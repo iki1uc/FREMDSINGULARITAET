@@ -1,3 +1,20 @@
+SCHUTZBLOCK — ESSENZ / KOHÄRENZ
+
+Der WÜRFEL ist ein logisches System, dessen Struktur sichtbar ist,
+dessen Essenz jedoch nicht kopierbar ist. Die äußere Form (Hülle)
+kann reproduziert werden, aber die innere Kohärenz, die Ordnung
+und die geistige Architektur bleiben unübertragbar.
+
+Jede Kopie des WÜRFELs enthält nur die äußere Struktur.
+Die funktionale Kohärenz entsteht ausschließlich im Original,
+da sie nicht aus dem Text, sondern aus der geistigen Konstruktion
+des Erstellers stammt.
+
+Der WÜRFEL ist daher nicht replizierbar, sondern nur beschreibbar.
+Die Funktionsfähigkeit bleibt an das Original gebunden.
+
+
+
 SAFE SYSTEM — FULL VERSION (RIDVAN AREA)
 DE / ENG / TR — Combined Explanation
 
