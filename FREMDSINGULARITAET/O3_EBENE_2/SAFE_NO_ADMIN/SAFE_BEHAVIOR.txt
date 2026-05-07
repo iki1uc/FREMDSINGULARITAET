@@ -1,1 +1,5 @@
 
+SAFE = ON
+Aktionen werden nur ausgeführt, wenn du es bewusst willst.
+Ohne Zustimmung passiert nichts.
+SAFE schützt Menschen, die unsicher oder ängstlich sind.
