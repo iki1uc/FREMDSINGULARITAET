@@ -260,3 +260,135 @@ function setCube(cubeId) {
 
   zeigeVerhandlungsStatus(H, E, F, D);
 </script>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Cube Control</title>
+  <style>
+    body{font-family:system-ui,Arial;margin:16px}
+    .rooms{display:flex;gap:12px}
+    .room{flex:1;padding:18px;border-radius:12px;background:#f3f3f3;text-align:center}
+    .status{width:48px;height:48px;border-radius:50%;margin:8px auto;background:#ddd}
+    .btn{display:inline-block;padding:10px 16px;margin:6px;border-radius:8px;background:#222;color:#fff;cursor:pointer}
+    .toggle{padding:8px 12px;border-radius:8px;background:#666;color:#fff;cursor:pointer}
+    .pulse{animation:pulse 1s infinite}
+    @keyframes pulse{0%{opacity:1}50%{opacity:.4}100%{opacity:1}}
+  </style>
+</head>
+<body>
+  <h3>Raumwahl</h3>
+  <div class="rooms" id="rooms">
+    <div class="room" data-room="room-1">
+      <h4>Raum 1</h4>
+      <div class="status" id="status-room-1"></div>
+      <div><button class="btn" data-action="open" data-room="room-1">Öffnen</button></div>
+    </div>
+    <div class="room" data-room="room-2">
+      <h4>Raum 2</h4>
+      <div class="status" id="status-room-2"></div>
+      <div><button class="btn" data-action="open" data-room="room-2">Öffnen</button></div>
+    </div>
+    <div class="room" data-room="room-3">
+      <h4>Raum 3</h4>
+      <div class="status" id="status-room-3"></div>
+      <div><button class="btn" data-action="open" data-room="room-3">Öffnen</button></div>
+    </div>
+  </div>
+
+  <div id="detail" style="margin-top:20px;display:none">
+    <h3 id="roomTitle"></h3>
+    <div>
+      <button class="btn" id="ability-analyze">Analysieren</button>
+      <button class="btn" id="ability-protect">Schützen</button>
+      <button class="btn" id="ability-unlock">Freischalten</button>
+    </div>
+    <div style="margin-top:12px">
+      <button class="toggle" id="precheckToggle">Vorab‑Check OFF</button>
+      <button class="toggle" id="executeToggle">Ausführen OFF</button>
+    </div>
+    <div style="margin-top:12px">
+      <div id="preview" style="min-height:48px"></div>
+      <div style="margin-top:8px"><button class="btn" id="confirmBtn">OK</button></div>
+    </div>
+  </div>
+
+  <script>
+    // Simple state
+    let currentRoom = null;
+    let currentAbility = null;
+    let precheckOn = false;
+    let executeOn = false;
+
+    // Color mapping
+    const colorMap = {
+      white:'#ffffff',
+      light_gray:'#dcdcdc',
+      dark_gray:'#8f8f8f',
+      black:'#222222'
+    };
+
+    // UI helpers
+    function setRoomStatus(room, color, pulse=false){
+      const el = document.getElementById('status-'+room);
+      el.style.background = colorMap[color] || '#ddd';
+      el.classList.toggle('pulse', pulse);
+    }
+
+    // Room open
+    document.querySelectorAll('[data-action="open"]').forEach(b=>{
+      b.addEventListener('click', e=>{
+        currentRoom = e.target.dataset.room;
+        document.getElementById('detail').style.display='block';
+        document.getElementById('roomTitle').textContent = 'Details '+currentRoom;
+      });
+    });
+
+    // Ability buttons
+    document.getElementById('ability-analyze').addEventListener('click', ()=> currentAbility='analyze');
+    document.getElementById('ability-protect').addEventListener('click', ()=> currentAbility='protect');
+    document.getElementById('ability-unlock').addEventListener('click', ()=> currentAbility='unlock');
+
+    // Toggles
+    document.getElementById('precheckToggle').addEventListener('click', async ()=>{
+      if(!currentRoom || !currentAbility) return;
+      precheckOn = !precheckOn;
+      document.getElementById('precheckToggle').textContent = 'Vorab‑Check ' + (precheckOn?'ON':'OFF');
+      if(precheckOn){
+        // visual pulse
+        setRoomStatus(currentRoom,'light_gray',true);
+        // send precheck.request to orchestrator (example via fetch)
+        const req = { event:'precheck.request', room_id:currentRoom, ability:currentAbility, mode:'HYBRID' };
+        // simulate 10s check and result
+        await new Promise(r=>setTimeout(r,10000));
+        // simulate result (here white)
+        const result='white';
+        setRoomStatus(currentRoom,result,false);
+        document.getElementById('preview').textContent = 'Vorab‑Check: ' + result;
+      }
+    });
+
+    document.getElementById('executeToggle').addEventListener('click', ()=>{
+      executeOn = !executeOn;
+      document.getElementById('executeToggle').textContent = 'Ausführen ' + (executeOn?'ON':'OFF');
+    });
+
+    // Confirm -> start execute if allowed
+    document.getElementById('confirmBtn').addEventListener('click', async ()=>{
+      if(!currentRoom || !currentAbility || !executeOn) return;
+      // preview
+      document.getElementById('preview').textContent = 'Starte Ausführung...';
+      // visual running animation (no counter)
+      setRoomStatus(currentRoom,'white',true);
+      // simulate 20s run
+      await new Promise(r=>setTimeout(r,20000));
+      // final result (simulate success)
+      const final='white';
+      setRoomStatus(currentRoom,final,false);
+      document.getElementById('preview').textContent = 'Ergebnis: ' + final;
+      // internal: send execute.result to orchestrator (not shown)
+    });
+  </script>
+</body>
+</html>
