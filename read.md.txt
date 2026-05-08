@@ -1,0 +1,23 @@
+FREMDSINGULARITAET
+STATUS: BETA – Struktur stabil
+
+BESUCHER:
+UPD → 4–7 Anzeigen → Input → Move → Mana
+
+SYSTEM:
+autonom
+symbolisch
+zustandslos
+
+ZIEL:
+Beta abschließen → Release vorbereiten
+BOOST:
+aktiviert
+BOOST:
+aktiviert
+
+SUPERCHARGE:
+aktiviert
+
+RELEASE:
+vorbereitung aktiv
