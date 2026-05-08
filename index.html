@@ -1,58 +1,20 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <title>CUBE‑0 – SAFE / CUBE / CUBE2 Maske</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      background: #000;
-      color: #0ff;
-      font-family: monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      gap: 4px;
-      width: 90vmin;
-      height: 90vmin;
-      border: 2px solid #0ff;
-    }
-    .cell {
-      border: 1px solid #044;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-size: 2.2vmin;
-      text-align: center;
-      padding: 4px;
-    }
-    .tag { font-weight: bold; font-size: 2.6vmin; }
-    .safe { color: #66ff66; }
-    .cube { color: #00aaff; }
-    .c2 { color: #ffaa00; }
-  </style>
-</head>
-<body>
+<script>
+function cubeKontakt(cubeID, projekt) {
 
-<div class="grid">
+  // KI-Meldung: Bereitschaft
+  const bereit = 
+    cubeID + " → Bereitschaft 100% → Ressourcen stabil → Leitung frei → Projekt: " +
+    projekt + " → Bereit zur Arbeitseinleitung.";
 
-  <!-- SAFE oben links -->
-  <div class="cell">
-    <div class="tag safe">SAFE</div>
-    <div>SYS: GRÜN 🙂</div>
-    <div>USR: OK 🙂</div>
-    <div>ABG: SAFE ✔</div>
-  </div>
+  document.getElementById("cube-anker").textContent = bereit;
 
-  <!-- CUBE oben mitte -->
-  <div class="cell">
-    <div class="tag cube">CUBE</div>
-    <div>
+  // KI-Meldung: Arbeitseinleitung
+  const start = 
+    cubeID + " → Arbeit eingeleitet → Prozess läuft…";
+
+  document.getElementById("cube-status").textContent = start;
+
+  // Hier startet die Cube-spezifische Arbeit
+  cubeJob(cubeID);
+}
+</script>
