@@ -1,1 +1,63 @@
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CUBE2 SAFE – Systemkern</title>
+  <style>
+    body { background:#000; color:#0f0; font-family: monospace; }
+    .cube-frame { border:1px solid #0f0; padding:10px; margin:10px; }
+    .block { border:1px solid #0f0; margin:10px 0; padding:8px; }
+    .label { color:#0ff; font-weight:bold; }
+  </style>
+</head>
+<body>
+
+  <!-- CUBE / SAFE – Rahmen -->
+  <div class="cube-frame" data-cube="2" data-mode="SAFE">
+    <div class="block">
+      <span class="label">CUBE:</span> 2<br>
+      <span class="label">Modus:</span> SAFE<br>
+      <span class="label">Status:</span> aktiv, stabil
+    </div>
+
+    <!-- Gravitation (Wahrnehmung) -->
+    <div class="block" id="gravitation"
+         data-role="achse"
+         data-type="wahrnehmung">
+      <span class="label">Wahrnehmungs‑Gravitation</span><br>
+      zieht alle Signale in einen verständlichen Raum.
+    </div>
+
+    <!-- Transrapid‑Schiene (Bewegung / Verlauf) -->
+    <div class="block" id="transrapid"
+         data-role="achse"
+         data-type="bewegung">
+      <span class="label">Transrapid‑Schiene</span><br>
+      führt Zustände schnell, aber kontrolliert durch den Raum.
+    </div>
+
+    <!-- Fähigkeiten (Module) -->
+    <div class="block" id="faehigkeiten"
+         data-role="module">
+      <span class="label">Fähigkeiten</span><br>
+      <ul>
+        <li data-scope="wahrnehmung">Signale ordnen</li>
+        <li data-scope="bewegung">Übergänge stabil halten</li>
+        <li data-scope="safe">Überlast vermeiden</li>
+      </ul>
+    </div>
+
+    <!-- Beziehung: alles zueinander -->
+    <div class="block" id="relationen"
+         data-role="relation">
+      <span class="label">Relationen</span><br>
+      Gravitation definiert den Raum,<br>
+      Transrapid definiert die Bewegung im Raum,<br>
+      Fähigkeiten arbeiten innerhalb von CUBE2 SAFE<br>
+      und dürfen den Rahmen nicht sprengen.
+    </div>
+  </div>
+
+</body>
+</html>
