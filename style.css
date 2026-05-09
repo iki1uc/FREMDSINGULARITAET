@@ -1,3 +1,17 @@
+<style>
+.cube-mask {
+  display: grid;
+  grid-template-columns: repeat(3, 40px);
+  grid-template-rows: repeat(3, 40px);
+  gap: 4px;
+}
+
+.cube2 .cell {
+  background: #003300;
+  border: 1px solid #00aa00;
+  border-radius: 6px;
+}
+
 .cube2.active .cell {
   background: #006600;
   border-color: #00ff00;
@@ -7,3 +21,4 @@
   background: #00aa00;
   box-shadow: 0 0 12px #00ff00;
 }
+</style>
