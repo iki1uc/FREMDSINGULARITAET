@@ -3,3 +3,7 @@
   border-color: #00ff00;
 }
 
+.cube2.trigger .t5 {
+  background: #00aa00;
+  box-shadow: 0 0 12px #00ff00;
+}
