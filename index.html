@@ -1,20 +1,58 @@
-<div id="cube-anker">–</div>
-<div id="cube-status">–</div>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Cube System</title>
 
-<div id="cube2" class="cube-mask cube2">
-  <div class="cell t1"></div>
-  <div class="cell t2"></div>
-  <div class="cell t3"></div>
+  <style>
+    .cube-mask {
+      display: grid;
+      grid-template-columns: repeat(3, 40px);
+      grid-template-rows: repeat(3, 40px);
+      gap: 4px;
+    }
 
-  <div class="cell t4"></div>
-  <div class="cell t5"></div>
-  <div class="cell t6"></div>
+    .cube2 .cell {
+      background: #003300;
+      border: 1px solid #00aa00;
+      border-radius: 6px;
+    }
 
-  <div class="cell t7"></div>
-  <div class="cell t8"></div>
-  <div class="cell t9"></div>
-</div>
+    .cube2.active .cell {
+      background: #006600;
+      border-color: #00ff00;
+    }
 
-<div id="vr-box">VR: –</div>
-<script src="cube-core.js"></script>
-<script src="verhandlung-core.js"></script>
+    .cube2.trigger .t5 {
+      background: #00aa00;
+      box-shadow: 0 0 12px #00ff00;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="cube-anker">–</div>
+  <div id="cube-status">–</div>
+
+  <div id="cube2" class="cube-mask cube2">
+    <div class="cell t1"></div>
+    <div class="cell t2"></div>
+    <div class="cell t3"></div>
+
+    <div class="cell t4"></div>
+    <div class="cell t5"></div>
+    <div class="cell t6"></div>
+
+    <div class="cell t7"></div>
+    <div class="cell t8"></div>
+    <div class="cell t9"></div>
+  </div>
+
+  <div id="vr-box">VR: –</div>
+
+  <script src="cube-core.js"></script>
+  <script src="verhandlung-core.js"></script>
+
+</body>
+</html>
