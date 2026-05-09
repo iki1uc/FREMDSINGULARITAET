@@ -16,6 +16,8 @@
 </div>
 
 <div id="vr-box">VR: –</div>
+
+<style>
 .cube-mask {
   display: grid;
   grid-template-columns: repeat(3, 40px);
@@ -38,6 +40,10 @@
   background: #00aa00;
   box-shadow: 0 0 12px #00ff00;
 }
+</style>
+
+<script>
+// Zentrale Kontaktfunktion – für ALLE Cubes
 function cubeKontakt(cubeID, projekt) {
   const bereit =
     cubeID + " → Bereitschaft 100% → Ressourcen stabil → Leitung frei → Projekt: " +
@@ -54,6 +60,7 @@ function cubeKontakt(cubeID, projekt) {
   cubeJob(cubeID);
 }
 
+// Zentrale Job-Funktion
 function cubeJob(cubeID) {
   switch (cubeID) {
     case "CUBE_2":
@@ -65,6 +72,7 @@ function cubeJob(cubeID) {
   }
 }
 
+// SAFE UI
 function safeUI(vr) {
   const cube = document.getElementById("cube2");
   if (!cube) return;
@@ -77,6 +85,7 @@ function safeUI(vr) {
   }
 }
 
+// VR
 function berechneVR(H, E, F, D) {
   return H * E * F * D;
 }
@@ -99,3 +108,4 @@ function zeigeVerhandlungsStatus(H, E, F, D) {
     "  → VR=" + vr + "\n" +
     verhandlungsStatusText(vr);
 }
+</script>
