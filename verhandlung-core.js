@@ -1,4 +1,3 @@
-<script>
 function cubeKontakt(cubeID, projekt) {
   const bereit =
     cubeID + " → Bereitschaft 100% → Ressourcen stabil → Leitung frei → Projekt: " +
@@ -60,4 +59,3 @@ function zeigeVerhandlungsStatus(H, E, F, D) {
     "  → VR=" + vr + "\n" +
     verhandlungsStatusText(vr);
 }
-</script>
