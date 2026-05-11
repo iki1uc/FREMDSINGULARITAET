@@ -101,3 +101,6 @@ CUBE 2 wird aktiv, wenn Schutz, Pause oder Stop nötig sind.
 ---
 
 ## END OF FILE
+Dieses Projekt darf frei genutzt werden.
+Bitte nennen Sie den ursprünglichen Autor, wenn Inhalte übernommen werden.
+
