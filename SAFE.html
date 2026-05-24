@@ -1,1 +1,138 @@
-1
+1<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>SAFE – Cookie Transparenz</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0b0c10;
+      color: #e5e5e5;
+      margin: 0;
+      padding: 20px;
+    }
+    h1, h2 {
+      margin-top: 0;
+    }
+    .box {
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      background: #11141a;
+    }
+    pre {
+      background: #050608;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 0.9rem;
+    }
+    .hint {
+      font-size: 0.9rem;
+      color: #bbbbbb;
+    }
+    .small {
+      font-size: 0.8rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <h1>SAFE – Cookie Transparenz</h1>
+
+  <div class="box">
+    <h2>1. Was SAFE macht</h2>
+    <p>
+      SAFE liest nur die Cookies, die bereits in deinem Browser vorhanden sind,
+      und zeigt dir, was daraus theoretisch von Webseiten abgeleitet werden kann.
+      SAFE speichert nichts, sendet nichts und erstellt keine Profile.
+    </p>
+  </div>
+
+  <div class="box">
+    <h2>2. Aktuelle Cookie-Daten (IST)</h2>
+    <div id="cookie-output">
+      <p class="hint">Lade… Cookies werden lokal ausgelesen.</p>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2>3. SOLL – EU-Recht & Menschenrechte</h2>
+    <p>
+      Nach EU-Recht (z. B. DSGVO, ePrivacy) dürfen Cookies nur für klar benannte Zwecke
+      genutzt werden, denen du zugestimmt hast. Du hast das Recht auf:
+    </p>
+    <ul>
+      <li>Information darüber, welche Daten verarbeitet werden</li>
+      <li>Zweckbindung und Datenminimierung</li>
+      <li>Löschung bzw. Einschränkung der Verarbeitung</li>
+      <li>Schutz deiner Privatsphäre und informationellen Selbstbestimmung</li>
+    </ul>
+    <p class="hint">
+      SAFE bewertet nicht, ob andere Seiten sich daran halten – SAFE macht nur sichtbar,
+      welche Rohdaten im Browser liegen.
+    </p>
+  </div>
+
+  <div class="box">
+    <h2>4. Hinweis zu SAFE-spezifischen Cookies</h2>
+    <p>
+      Falls ein spezieller SAFE-Cookie existiert (z. B. <code>SAFE_STATE</code>),
+      kann eine Webseite erkennen, dass du SAFE verwendet hast.
+    </p>
+    <p class="hint">
+      Wenn du nicht möchtest, dass andere Seiten sehen, dass du SAFE nutzt,
+      kannst du diesen Cookie in deinen Browser-Einstellungen löschen.
+    </p>
+  </div>
+
+  <p class="small">
+    SAFE ist ein reines Aufklärungswerkzeug. Es trifft keine Entscheidungen über dich,
+    sondern spiegelt nur, was technisch bereits vorhanden ist.
+  </p>
+
+  <script>
+    function readCookies() {
+      const raw = document.cookie;
+      if (!raw) return {};
+
+      const cookies = raw.split(";").map(c => c.trim());
+      const result = {};
+      cookies.forEach(cookie => {
+        const [name, ...rest] = cookie.split("=");
+        const value = rest.join("=");
+        result[name] = value;
+      });
+      return result;
+    }
+
+    function renderCookies() {
+      const container = document.getElementById("cookie-output");
+      const data = readCookies();
+
+      if (Object.keys(data).length === 0) {
+        container.innerHTML = `
+          <p>Es wurden keine Cookies gefunden, die dieser Seite zugänglich sind.</p>
+          <p class="hint">
+            Das bedeutet nicht, dass andere Seiten keine Cookies nutzen – nur,
+            dass hier aktuell keine auslesbar sind.
+          </p>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <p>Diese Cookie-Schlüssel/Werte sind für diese Seite sichtbar:</p>
+        <pre>${JSON.stringify(data, null, 2)}</pre>
+        <p class="hint">
+          Jede eingebundene Komponente (z. B. Skripte, Bilder, iframes) könnte diese
+          Cookies ebenfalls lesen, sofern sie im gleichen Kontext ausgeführt wird.
+        </p>
+      `;
+    }
+
+    window.addEventListener("load", renderCookies);
+  </script>
+</body>
+</html>
