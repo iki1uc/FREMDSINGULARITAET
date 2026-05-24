@@ -2,88 +2,85 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Cube System</title>
-
+  <title>CUBE · RUN/LIST/EVAL</title>
   <style>
     body {
-      background: #000;
-      color: #0f0;
-      font-family: system-ui, sans-serif;
-      margin: 0;
-      padding: 20px;
+      background:#000;
+      color:#0f0;
+      font-family:system-ui, sans-serif;
+      margin:0;
+      padding:20px;
     }
-
     .cube-mask {
-      display: grid;
-      grid-template-columns: repeat(3, 40px);
-      grid-template-rows: repeat(3, 40px);
-      gap: 4px;
-      margin-bottom: 20px;
+      display:grid;
+      grid-template-columns:repeat(3,40px);
+      grid-template-rows:repeat(3,40px);
+      gap:4px;
+      margin-bottom:20px;
     }
-
-    .cube2 .cell {
-      background: #003300;
-      border: 1px solid #00aa00;
-      border-radius: 6px;
+    .cell {
+      background:#003300;
+      border:1px solid #00aa00;
+      border-radius:6px;
     }
-
-    .cube2.active .cell {
-      background: #006600;
-      border-color: #00ff00;
+    #cube2.active .cell {
+      background:#006600;
+      border-color:#00ff00;
     }
-
-    .cube2.trigger .t5 {
-      background: #00aa00;
-      box-shadow: 0 0 12px #00ff00;
+    #cube2.trigger .t5 {
+      background:#00aa00;
+      box-shadow:0 0 12px #00ff00;
     }
   </style>
 </head>
-
 <body>
 
-  <div id="cube2" class="cube-mask cube2">
+  <h1>CUBE · RUN / LIST / EVAL</h1>
+
+  <div id="cube2" class="cube-mask">
     <div class="cell t1"></div>
     <div class="cell t2"></div>
     <div class="cell t3"></div>
-
     <div class="cell t4"></div>
     <div class="cell t5"></div>
     <div class="cell t6"></div>
-
     <div class="cell t7"></div>
     <div class="cell t8"></div>
     <div class="cell t9"></div>
   </div>
 
   <div id="vr-box">VR: –</div>
+  <p>Click auf den Cube schaltet durch: 1=run, 2=list, 3=eval, 4=i, 5=error.</p>
 
-  <!-- externe Scripts -->
-  <script src="cube-core.js"></script>
-  <script src="verhandlung-core.js"></script>
-
-  <!-- interne SAFE-Verbindung -->
   <script>
-    // CUBE → SAFE Routing
-    function cubeToSafe(vr) {
-      switch(vr) {
-        case 1:
-          window.location.href = "safe_run.html";
-          break;
-        case 2:
-          window.location.href = "safe_list.html";
-          break;
-        case 3:
-          window.location.href = "safe_eval.html";
-          break;
+    let VR = 0;
+
+    function updateVR() {
+      const box = document.getElementById("vr-box");
+      box.textContent = "VR: " + VR;
+    }
+
+    function route(vr) {
+      switch (vr) {
+        case 1: window.location.href = "run.html";   break;
+        case 2: window.location.href = "list.html";  break;
+        case 3: window.location.href = "eval.html";  break;
+        case 4: window.location.href = "i.html";     break;
+        case 5: window.location.href = "error.html"; break;
         default:
-          console.log("Cube bleibt im Reinraum.");
+          console.log("Reinraum / kein Routing:", vr);
       }
     }
 
-    // Hook in VR-System
-    window.safeUI = function(vr) {
-      cubeToSafe(vr);
-    };
+    document.addEventListener("DOMContentLoaded", () => {
+      const cube = document.getElementById("cube2");
+      cube.addEventListener("click", () => {
+        VR = (VR % 5) + 1; // 1–5
+        updateVR();
+        route(VR);
+      });
+      updateVR();
+    });
   </script>
 
 </body>
