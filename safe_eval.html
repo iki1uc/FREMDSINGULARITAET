@@ -1,1 +1,60 @@
-1
+1<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>SAFE:EVAL</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background:#0b0c10; color:#e5e5e5; padding:20px; }
+    .box { background:#11141a; border:1px solid #444; border-radius:8px; padding:16px; margin-bottom:16px; }
+    pre { background:#050608; padding:10px; border-radius:6px; overflow-x:auto; }
+  </style>
+</head>
+<body>
+
+<h1>SAFE:EVAL</h1>
+
+<div class="box">
+  <h2>Technische Auswertung</h2>
+  <div id="eval"></div>
+</div>
+
+<script>
+  function readCookies() {
+    const raw = document.cookie;
+    if (!raw) return {};
+    const out = {};
+    raw.split(";").map(c => c.trim()).forEach(c => {
+      const [k, ...v] = c.split("=");
+      out[k] = v.join("=");
+    });
+    return out;
+  }
+
+  function evalCookies() {
+    const box = document.getElementById("eval");
+    const data = readCookies();
+
+    if (Object.keys(data).length === 0) {
+      box.innerHTML = "<p>Keine Cookies vorhanden.</p>";
+      return;
+    }
+
+    let html = "<ul>";
+    for (const key in data) {
+      html += `
+        <li>
+          <strong>${key}</strong>:  
+          könnte als Session, Zustand, Identifikator oder Einstellung dienen.
+        </li>
+      `;
+    }
+    html += "</ul>";
+
+    box.innerHTML = html;
+  }
+
+  window.onload = evalCookies;
+</script>
+
+</body>
+</html>
