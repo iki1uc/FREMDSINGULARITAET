@@ -1,1 +1,58 @@
-1
+1<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>SAFE:RUN</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background:#0b0c10; color:#e5e5e5; padding:20px; }
+    .box { background:#11141a; border:1px solid #444; border-radius:8px; padding:16px; margin-bottom:16px; }
+    pre { background:#050608; padding:10px; border-radius:6px; overflow-x:auto; }
+  </style>
+</head>
+<body>
+
+<h1>SAFE:RUN</h1>
+
+<div class="box">
+  <h2>Systemlauf</h2>
+  <p>SAFE führt einen Reinraum‑Check durch…</p>
+  <div id="status"></div>
+</div>
+
+<div class="box">
+  <h2>Gefundene Cookies</h2>
+  <div id="cookies"></div>
+</div>
+
+<script>
+  function readCookies() {
+    const raw = document.cookie;
+    if (!raw) return {};
+    const out = {};
+    raw.split(";").map(c => c.trim()).forEach(c => {
+      const [k, ...v] = c.split("=");
+      out[k] = v.join("=");
+    });
+    return out;
+  }
+
+  function runSafe() {
+    const statusBox = document.getElementById("status");
+    const cookieBox = document.getElementById("cookies");
+    const data = readCookies();
+
+    statusBox.innerHTML = "<p>SAFE läuft im Reinraum. Keine Speicherung. Keine Übertragung.</p>";
+
+    if (Object.keys(data).length === 0) {
+      cookieBox.innerHTML = "<p>Keine Cookies gefunden.</p>";
+      return;
+    }
+
+    cookieBox.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+  }
+
+  window.onload = runSafe;
+</script>
+
+</body>
+</html>
