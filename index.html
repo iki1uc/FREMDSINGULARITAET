@@ -5,11 +5,27 @@
   <title>Cube System</title>
 
   <style>
+    body {
+      background: #000;
+      color: #0f0;
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* Nur die 2 Würfel sichtbar */
+    #cube-anker, 
+    #cube-status, 
+    #vr-box {
+      display: none;
+    }
+
     .cube-mask {
       display: grid;
       grid-template-columns: repeat(3, 40px);
       grid-template-rows: repeat(3, 40px);
       gap: 4px;
+      margin-bottom: 20px;
     }
 
     .cube2 .cell {
@@ -32,9 +48,7 @@
 
 <body>
 
-  <div id="cube-anker">–</div>
-  <div id="cube-status">–</div>
-
+  <!-- WÜRFEL 1 -->
   <div id="cube2" class="cube-mask cube2">
     <div class="cell t1"></div>
     <div class="cell t2"></div>
@@ -49,13 +63,26 @@
     <div class="cell t9"></div>
   </div>
 
-  <div id="vr-box">VR: –</div>
+  <!-- WÜRFEL 2 (optional zweiter Cube) -->
+  <div id="cube3" class="cube-mask cube2">
+    <div class="cell t1"></div>
+    <div class="cell t2"></div>
+    <div class="cell t3"></div>
+
+    <div class="cell t4"></div>
+    <div class="cell t5"></div>
+    <div class="cell t6"></div>
+
+    <div class="cell t7"></div>
+    <div class="cell t8"></div>
+    <div class="cell t9"></div>
+  </div>
 
   <script src="cube-core.js"></script>
   <script src="verhandlung-core.js"></script>
 
   <!-- ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ -->
-  <!-- HIER KOMMT DER SAFE-CUBE-CODE HIN -->
+  <!-- HIER: SAFE-CUBE ROUTING (unsichtbar, aber aktiv) -->
   <!-- ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ -->
 
   <script>
@@ -88,70 +115,6 @@
       cubeToSafe(vr);    // neue SAFE-Verbindung
     };
   </script>
-
-  <!-- ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ -->
-  <!-- BIS HIER – NICHTS ANDERES ÄNDERN -->
-  <!-- ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ -->
-
-</body>
-</html>
-
-
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <title>Cube System</title>
-
-  <style>
-    .cube-mask {
-      display: grid;
-      grid-template-columns: repeat(3, 40px);
-      grid-template-rows: repeat(3, 40px);
-      gap: 4px;
-    }
-
-    .cube2 .cell {
-      background: #003300;
-      border: 1px solid #00aa00;
-      border-radius: 6px;
-    }
-
-    .cube2.active .cell {
-      background: #006600;
-      border-color: #00ff00;
-    }
-
-    .cube2.trigger .t5 {
-      background: #00aa00;
-      box-shadow: 0 0 12px #00ff00;
-    }
-  </style>
-</head>
-
-<body>
-
-  <div id="cube-anker">–</div>
-  <div id="cube-status">–</div>
-
-  <div id="cube2" class="cube-mask cube2">
-    <div class="cell t1"></div>
-    <div class="cell t2"></div>
-    <div class="cell t3"></div>
-
-    <div class="cell t4"></div>
-    <div class="cell t5"></div>
-    <div class="cell t6"></div>
-
-    <div class="cell t7"></div>
-    <div class="cell t8"></div>
-    <div class="cell t9"></div>
-  </div>
-
-  <div id="vr-box">VR: –</div>
-
-  <script src="cube-core.js"></script>
-  <script src="verhandlung-core.js"></script>
 
 </body>
 </html>
