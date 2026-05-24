@@ -1,1 +1,57 @@
-1
+1<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>SAFE:RUN</title>
+  <style>
+    body { background:#000; color:#0f0; font-family: monospace; padding:20px; }
+    .box { border:1px solid #0f0; padding:10px; margin-bottom:20px; }
+    pre { background:#001100; padding:10px; }
+  </style>
+</head>
+<body>
+
+<h1>SAFE:RUN</h1>
+
+<div class="box">
+  <h2>Reinraum‑Check</h2>
+  <div id="status"></div>
+</div>
+
+<div class="box">
+  <h2>Cookies</h2>
+  <div id="cookies"></div>
+</div>
+
+<script>
+function readCookies() {
+  const raw = document.cookie;
+  if (!raw) return {};
+  const out = {};
+  raw.split(";").map(c => c.trim()).forEach(c => {
+    const [k, ...v] = c.split("=");
+    out[k] = v.join("=");
+  });
+  return out;
+}
+
+function runSafe() {
+  const statusBox = document.getElementById("status");
+  const cookieBox = document.getElementById("cookies");
+  const data = readCookies();
+
+  statusBox.innerHTML = "SAFE läuft im Reinraum. Keine Speicherung.";
+
+  if (Object.keys(data).length === 0) {
+    cookieBox.innerHTML = "<p>Keine Cookies gefunden.</p>";
+    return;
+  }
+
+  cookieBox.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+}
+
+window.onload = runSafe;
+</script>
+
+</body>
+</html>
