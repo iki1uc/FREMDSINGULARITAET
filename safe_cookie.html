@@ -1,1 +1,81 @@
-1
+1<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>SAFE – Cookie Rohdaten</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background:#0b0c10; color:#e5e5e5; padding:20px; }
+    .box { background:#11141a; border:1px solid #444; border-radius:8px; padding:16px; margin-bottom:16px; }
+    pre { background:#050608; padding:10px; border-radius:6px; overflow-x:auto; }
+    h1,h2 { margin-top:0; }
+    .hint { font-size:0.9rem; color:#bbb; }
+  </style>
+</head>
+<body>
+
+<h1>SAFE – Cookie Rohdaten</h1>
+
+<div class="box">
+  <h2>Rohdaten (unverändert)</h2>
+  <div id="raw-output">
+    <p class="hint">Lade…</p>
+  </div>
+</div>
+
+<div class="box">
+  <h2>Wie Webseiten diese Daten interpretieren könnten</h2>
+  <p class="hint">
+    SAFE bewertet nicht, ob diese Interpretation korrekt oder erlaubt ist –  
+    SAFE zeigt nur, was technisch möglich wäre.
+  </p>
+  <div id="interpret-output"></div>
+</div>
+
+<div class="box">
+  <h2>Hinweis</h2>
+  <p>
+    Wenn du nicht möchtest, dass andere Seiten sehen, dass du SAFE nutzt,  
+    lösche den entsprechenden SAFE‑Cookie in deinen Browser‑Einstellungen.
+  </p>
+</div>
+
+<script>
+  function readCookies() {
+    const raw = document.cookie;
+    if (!raw) return {};
+    const cookies = raw.split(";").map(c => c.trim());
+    const result = {};
+    cookies.forEach(cookie => {
+      const [name, ...rest] = cookie.split("=");
+      result[name] = rest.join("=");
+    });
+    return result;
+  }
+
+  function render() {
+    const rawBox = document.getElementById("raw-output");
+    const interpretBox = document.getElementById("interpret-output");
+    const data = readCookies();
+
+    if (Object.keys(data).length === 0) {
+      rawBox.innerHTML = "<p>Keine Cookies gefunden.</p>";
+      interpretBox.innerHTML = "<p class='hint'>Keine Interpretation möglich.</p>";
+      return;
+    }
+
+    rawBox.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+
+    let html = "<ul>";
+    for (const key in data) {
+      html += `<li><strong>${key}</strong>: könnte als Zustand, Session, Einstellung oder Identifikator interpretiert werden.</li>`;
+    }
+    html += "</ul>";
+
+    interpretBox.innerHTML = html;
+  }
+
+  window.addEventListener("load", render);
+</script>
+
+</body>
+</html>
