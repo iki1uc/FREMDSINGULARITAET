@@ -1,1 +1,16 @@
+/* core2.css – Kernbereich für Cube‑2 */
+
+.core-title {
+  font-size: 1.6rem;
+  color: #ffb347; /* Orange‑Gold für Struktur */
+  margin-bottom: 10px;
+}
+
+.core-info {
+  font-size: 1.2rem;
+  color: #ccc;
+  padding: 10px;
+  background: #1a1a1a;
+  border-left: 4px solid #ffb347;
+}
 
