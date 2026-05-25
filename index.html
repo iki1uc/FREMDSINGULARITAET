@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>CUBE · RUN/LIST/EVAL</title>
+
   <style>
     body {
       background:#000;
@@ -24,7 +25,11 @@
       border-radius:6px;
     }
   </style>
+
+  <!-- NEU: ALL4ALL ENGINE -->
+  <script src="all4all-engine.js" defer></script>
 </head>
+
 <body>
 
   <h1>CUBE · RUN / LIST / EVAL</h1>
@@ -42,6 +47,12 @@
   </div>
 
   <div id="vr-box">VR: –</div>
+
+  <!-- NEU: ALL4ALL BUTTON + OUTPUT -->
+  <div style="margin-top:20px;">
+    <button onclick="all4all(2)">4ALL</button>
+    <div id="out2" class="output"></div>
+  </div>
 
   <script>
     let VR = 0;
