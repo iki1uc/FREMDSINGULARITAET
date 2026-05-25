@@ -28,3 +28,10 @@ Ableitung (Errungenschaften der Zivilisation):
 
 Cube‑2 = Struktur‑Analyse der menschlichen Zivilisation.`;
 });
+
+// STATUS-MELDER FÜR CUBE-2
+window.cube_status["cube2"] = {
+  ok: true,
+  reason: "",
+  needs: []
+};
