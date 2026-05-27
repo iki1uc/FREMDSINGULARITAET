@@ -57,4 +57,3 @@ export function cube2_run(input, MODE) {
 // --- SAFE-Routing ---
 import "./cube-core.js";
 import "./verhandlung-core.js";
-
