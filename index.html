@@ -24,10 +24,21 @@
       border:1px solid #00aa00;
       border-radius:6px;
     }
+    #c3, #c3p {
+      font-family:"Courier New", monospace;
+      white-space:pre;
+      margin-top:10px;
+    }
   </style>
 
-  <!-- NEU: ALL4ALL ENGINE -->
-  <script src="all4all-engine.js" defer></script>
+  <!-- MODULE IMPORT -->
+  <script type="module">
+    import { all4all } from "./all4all-engine.js";
+    import { cube2_run } from "./cube2.js";
+
+    window.all4all = all4all;
+    window.cube2_run = cube2_run;
+  </script>
 </head>
 
 <body>
@@ -48,11 +59,20 @@
 
   <div id="vr-box">VR: –</div>
 
-  <!-- NEU: ALL4ALL BUTTON + OUTPUT -->
+  <!-- ALL4ALL + MODE-SWITCHER + OUTPUT -->
   <div style="margin-top:20px;">
     <button onclick="all4all(2)">4ALL</button>
+
+    <button onclick="cube2_run('INDEX', 'A')">MODE A</button>
+    <button onclick="cube2_run('INDEX', 'B')">MODE B</button>
+    <button onclick="cube2_run('INDEX', 'AB')">MODE AB</button>
+
     <div id="out2" class="output"></div>
   </div>
+
+  <!-- CUBE‑2 Output -->
+  <div id="c3"></div>
+  <div id="c3p"></div>
 
   <script>
     let VR = 0;
@@ -61,22 +81,11 @@
       document.getElementById("vr-box").textContent = "VR: " + VR;
     }
 
-    function route(vr) {
-      switch (vr) {
-        case 1: window.location.href = "run.html";   break;
-        case 2: window.location.href = "list.html";  break;
-        case 3: window.location.href = "eval.html";  break;
-        case 4: window.location.href = "i.html";     break;
-        case 5: window.location.href = "error.html"; break;
-      }
-    }
-
     document.addEventListener("DOMContentLoaded", () => {
       const cube = document.getElementById("cube2");
       cube.addEventListener("click", () => {
         VR = (VR % 5) + 1;
         updateVR();
-        route(VR);
       });
       updateVR();
     });
