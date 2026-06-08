@@ -1,95 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>CUBE · RUN/LIST/EVAL</title>
-
-  <style>
-    body {
-      background:#000;
-      color:#0f0;
-      font-family:system-ui, sans-serif;
-      margin:0;
-      padding:20px;
-    }
-    .cube-mask {
-      display:grid;
-      grid-template-columns:repeat(3,40px);
-      grid-template-rows:repeat(3,40px);
-      gap:4px;
-      margin-bottom:20px;
-    }
-    .cell {
-      background:#003300;
-      border:1px solid #00aa00;
-      border-radius:6px;
-    }
-    #c3, #c3p {
-      font-family:"Courier New", monospace;
-      white-space:pre;
-      margin-top:10px;
-    }
-  </style>
-
-  <!-- MODULE IMPORT -->
-  <script type="module">
-    import { all4all } from "./all4all-engine.js";
-    import { cube2_run } from "./cube2.js";
-
-    window.all4all = all4all;
-    window.cube2_run = cube2_run;
-  </script>
+  <meta charset="utf-8">
+  <title>Kandidat Index</title>
 </head>
-
 <body>
+  <h1>Kandidat: {{respo}}</h1>
+  <p>Base: {{base}}</p>
+  <p>Line: L(n)=3n</p>
+  <p>Instance: I(n)=base+3n</p>
+  <p>Axis: A(n)=floor(n/3)+1</p>
 
-  <h1>CUBE · RUN / LIST / EVAL</h1>
-
-  <div id="cube2" class="cube-mask">
-    <div class="cell t1"></div>
-    <div class="cell t2"></div>
-    <div class="cell t3"></div>
-    <div class="cell t4"></div>
-    <div class="cell t5"></div>
-    <div class="cell t6"></div>
-    <div class="cell t7"></div>
-    <div class="cell t8"></div>
-    <div class="cell t9"></div>
-  </div>
-
-  <div id="vr-box">VR: –</div>
-
-  <!-- ALL4ALL + MODE-SWITCHER + OUTPUT -->
-  <div style="margin-top:20px;">
-    <button onclick="all4all(2)">4ALL</button>
-
-    <button onclick="cube2_run('INDEX', 'A')">MODE A</button>
-    <button onclick="cube2_run('INDEX', 'B')">MODE B</button>
-    <button onclick="cube2_run('INDEX', 'AB')">MODE AB</button>
-
-    <div id="out2" class="output"></div>
-  </div>
-
-  <!-- CUBE‑2 Output -->
-  <div id="c3"></div>
-  <div id="c3p"></div>
-
-  <script>
-    let VR = 0;
-
-    function updateVR() {
-      document.getElementById("vr-box").textContent = "VR: " + VR;
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const cube = document.getElementById("cube2");
-      cube.addEventListener("click", () => {
-        VR = (VR % 5) + 1;
-        updateVR();
-      });
-      updateVR();
-    });
-  </script>
-
+  <a href="id.html">→ zur ID‑Ansicht</a>
 </body>
 </html>
